@@ -1,0 +1,76 @@
+<html>
+<head>
+    <style type="text/css">
+        .imgStyle {
+            width: 100px;
+            height: 100px;
+            border: 3px solid grey;
+        }
+        body {
+            text-align: center;
+            background-color: #EDB5BF
+
+        }
+        .title{
+            color: white;
+            position: absolute;
+            left: 430;
+            bottom: 670;
+            background-color: rgb(0,0,0,0.3);
+        }
+
+    </style>
+    <script src="jquery-3.4.1.js"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $('#divId img').on({
+                mouseout: function () {
+                    $(this).css({
+                        'cursor': 'default',
+                        'border-Color': 'grey'
+                    });
+                },
+                mouseover: function () {
+                    var imageURL = $(this).attr('src_large');
+                    $('#mainImage').fadeOut(200, function () {
+                        $(this).attr('src', imageURL);
+                    }).fadeIn(200);
+                    $(this).css({
+                        'cursor': 'hand'
+                    });
+                },
+                click: function() {
+                    var imageName = $(this).attr('name');
+                    var imagePrice = $(this).attr('price');
+                    $('#caption').html(imageName + "<br/>" + imagePrice + "<br/>")
+                    .show()
+                    .delay(5000)
+                    .fadeOut()
+
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="presentation">
+        <img id="mainImage" style="border:3px solid grey"
+             src="saturn.jpg" height="500" width="540" />
+        <div id="caption" class="title"></div>
+    </div>
+    <br />
+    <div id="divId">
+        <img class="imgStyle" src="saturn.jpg" 
+        name= "Saturn Devouring His Son" price= "$5" src_large="saturn.jpg"/>
+        <img class="imgStyle" src="ivan.jpg"
+        name= "Ivan the Terrible and His Son" price= "$4" src_large="ivan.jpg"/>
+        <img class="imgStyle" src="nightmare.jpg"
+        name= "Nightmare" price= "$3" src_large="nightmare.jpg"/>
+        <img class="imgStyle" src="the-scream.jpg" 
+        name= "The Scream" price= "$2" src_large="the-scream.jpg"/>
+        <img class="imgStyle" src="judith.jpg"
+        name= "Judith Beheading Holofernes" price= "$1" src_large="judith.jpg"/>
+    </div>
+</body>
+</html>
